@@ -1,5 +1,7 @@
 'use strict';
 
+const util = require('util');
+
 // our data object
 class Vertex {
 	constructor(value) {
@@ -48,6 +50,19 @@ class Graph {
 		return [...this.adjacencyList.get(vertex)];
 	}
 
+	getEdges() {
+		let getVertices = this.adjacencyList.keys();
+		for (let i of getVertices) {
+			let getValues = this.adjacencyList.get(i);
+			let neighbors = '';
+
+			for (let j of getValues) {
+				neighbors += j + ' ';
+			}
+			console.log(i + ' => ' + neighbors);
+		}
+	}
+
 	breadthFirst(startVertex) {
 		const queue = [];
 		const visitedNodes = new Set();
@@ -75,36 +90,38 @@ class Graph {
 
 let graph = new Graph();
 
-let a = graph.addVertex('a');
-let b = graph.addVertex('b');
-let c = graph.addVertex('c');
-let d = graph.addVertex('d');
-let e = graph.addVertex('e');
-let f = graph.addVertex('f');
-let g = graph.addVertex('g');
-let h = graph.addVertex('h');
+let neo = graph.addVertex('neo');
+let trinity = graph.addVertex('trinity');
+let morpheus = graph.addVertex('morpheus');
+let dozer = graph.addVertex('dozer');
+let tank = graph.addVertex('tank');
+let oracle = graph.addVertex('oracle');
+let sw1tch = graph.addVertex('sw1tch');
+let mouse = graph.addVertex('mouse');
 
-graph.addEdge(a, b);
-graph.addEdge(a, c);
-graph.addEdge(a, f);
-graph.addEdge(b, d);
-graph.addEdge(b, e);
-graph.addEdge(c, f);
-graph.addEdge(c, h);
-graph.addEdge(d, g);
-graph.addEdge(d, h);
-graph.addEdge(f, h);
-graph.addEdge(g, d);
-graph.addEdge(g, h);
-graph.addEdge(h, d);
-graph.addEdge(h, e);
+graph.addEdge(neo, morpheus);
+graph.addEdge(neo, oracle);
+graph.addEdge(neo, trinity);
+graph.addEdge(trinity, dozer);
+graph.addEdge(trinity, tank);
+graph.addEdge(morpheus, mouse);
+graph.addEdge(morpheus, oracle);
+graph.addEdge(dozer, sw1tch);
+graph.addEdge(dozer, mouse);
+graph.addEdge(sw1tch, mouse);
+graph.addEdge(oracle, mouse);
+graph.addEdge(mouse, dozer);
+graph.addEdge(mouse, tank);
 
 console.log('****MY GRAPH****: ', graph);
-console.log('****BREADTH-FIRST TRAVERSAL****', graph.breadthFirst(a));
-console.log('****NEIGHBORS****', graph.getNeighbors(f));
+console.log('****BREADTH-FIRST TRAVERSAL****', graph.breadthFirst(neo));
+console.log(graph.getNeighbors(mouse));
+// console.log('****Get Edges****', graph.getEdges(mouse));
 
-// Problems to solve:
-// Get Size
-// Return edge values / neighbors
+// for (const ver of graph.adjacencyList) {
+// 	console.log(ver[0]);
+// 	console.log(ver[1]);
+// }
+// console.log(util.inspect(graph, false, null, true));
 
 module.exports = { Vertex, Edge, Graph };
