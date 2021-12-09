@@ -54,3 +54,24 @@ Jest testing was used to verify that:
 ## Graph
 
 ![Graph](graph.PNG)
+
+---
+
+## Breadth-First Traversal 
+
+![Matrix](matrix-graph.PNG)
+
+```
+// Expected Output
+[
+	neo,
+	morpheus,
+	oracle,
+	trinity,
+	mouse,
+	dozer,
+	tank,	
+	sw1tch,
+]
+```	
+![](matrix-graph-breadthfirst.PNG)
